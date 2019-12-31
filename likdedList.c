@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 typedef struct node {
  int value;
@@ -47,7 +48,7 @@ int main() {
 }
 
 bool insert(int position, int value){
-    if(position < 0 || position >= size){
+    if(position < 0 || position > size){
         return false;
     }
     node * new = (node * ) malloc(sizeof(node));
@@ -59,9 +60,9 @@ bool insert(int position, int value){
         if(position != 0){
             node * current = head;
             for(int count = 0; count < position - 1; count++){
-                // if(current -> next == 0){
-                //     return false;
-                // }
+                if(current -> next == 0){
+                    return false;
+                }
                 current = current -> next;
             }
             node * next = current -> next;
